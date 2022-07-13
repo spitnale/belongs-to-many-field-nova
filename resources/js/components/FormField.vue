@@ -1,6 +1,6 @@
 <template>
-  <default-field :field="field" :errors="errors" :show-help-text="true">
-    <template slot="field">
+  <DefaultField :field="field" :errors="errors" :show-help-text="true">
+    <template #field>
       <div
         :style="{ height: field.height ? field.height : 'auto' }"
         class="relative"
@@ -9,7 +9,7 @@
           v-if="loading"
           class="py-6 px-8 flex justify-center items-center absolute pin z-50 bg-white"
         >
-          <loader class="text-60" />
+          <Loader class="text-60" />
         </div>
         <div v-if="this.field.selectAll" class="mb-2">
           <input
@@ -21,23 +21,23 @@
           <label for="checkbox">{{ this.field.messageSelectAll }}</label>
         </div>
         <!--          <label v-if="this.field.selectAll"><input type="checkbox" class="checkbox mb-2 mr-2">{{this.field.messageSelectAll}}</label>-->
-        <multi-select
+        <MultiSelect
           ref="multiselect"
           @open="() => repositionDropdown(true)"
           :options="options"
           v-bind="multiSelectProps"
           v-model="value"
         >
-          <template slot="noOptions">{{
+          <template #noOptions>{{
             field.multiselectSlots.noOptions
           }}</template>
-          <template slot="noResult">{{
+          <template #noResult>{{
             field.multiselectSlots.noResult
           }}</template>
-        </multi-select>
+        </MultiSelect>
       </div>
     </template>
-  </default-field>
+  </DefaultField>
 </template>
 
 <script>
@@ -245,7 +245,7 @@ export default {
 };
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style type="text/css">
 .multiselect__placeholder {
   font-size: 1rem;
